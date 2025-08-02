@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="src/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../src/output.css" />
+    <style>
+      @font-face {
+        font-family: 'Poppins';
+        src: url('../font/Poppins-Regular.ttf') format('truetype');
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="py-4 w-full px-5 fixed top-0 z-50 bg-white bg-opacity-90">
+      <header class="container max-w-4xl mx-auto flex justify-start">
+        <div class="items-center gap-5">
+          <a href="../index.html">
+            <svg
+              width="27"
+              height="30"
+              viewBox="0 0 20 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.44444 16.6111L6.01111 14.8094L4.25555 12.7778L13.3333 12.7778L13.3333 10.2222L4.25555 10.2222L6.01111 8.20333L4.44444 6.38889L-9.53674e-07 11.5L4.44444 16.6111ZM17.7778 20.4444H10V23H17.7778C19 23 20 21.85 20 20.4444L20 2.55556C20 1.15 19 -2.38419e-07 17.7778 -2.38419e-07H10L10 2.55556H17.7778L17.7778 20.4444Z"
+                fill="#83D6C5"
+              />
+            </svg>
+          </a>
+        </div>
+      </header>
+    </nav>
+    <div
+      class="container px-6 h-screen w-screen flex justify-center flex-col items-center font-poppins"
+    >
+      <div
+        class="text-gray-700 p-5 border-b-2 drop-shadow-md border-blue-100 font-medium mt-4 md:text-base md:font-bold md:leading-9 font-semi text-center"
+      >
+        Angka yang akan muncul yaitu <br />
+        rentang (2) - (5). <br />
+        <br />
+        Siapkan metodemu yah
+      </div>
+      <div
+        id="randomNumberDiv"
+        class="mt-16 w-56 text-white text-[17px] cursor-pointer h-56 text-center flex justify-center items-center rounded-md bg-blue-300"
+      >
+        <div id="randomNumberText">
+          Klik untuk mengacak <br />
+          angka
+        </div>
+      </div>
+      <button id="clearButton" class="bg-red-400 text-putih text-sm mt-5 px-3 py-2 rounded-md">
+        Hapus
+      </button>
+
+      <div
+        class="text-gray-700 border-2 border-blue-100 p-5 rounded-md font-medium mt-10 md:text-base md:font-bold md:leading-9 font-semi text-center"
+      >
+        Lalu, tentukan nilai suku <span class="font-semibold text-blue-400">ke-n (Un)</span> <br />
+        yang disampaikan oleh gurumu yah
+      </div>
+    </div>
+    <script>
+      function getRandomNumber() {
+        return Math.floor(Math.random() * 4) + 2;
+      }
+
+      document.getElementById('randomNumberDiv').addEventListener('click', function () {
+        const randomNumberText = document.getElementById('randomNumberText');
+        let interval;
+        let count = 0;
+        const duration = 2500; // durasi animasi dalam milidetik
+        const intervalTime = 50; // interval waktu untuk mengacak angka
+
+        interval = setInterval(() => {
+          randomNumberText.innerHTML = `<div class="text-6xl">${getRandomNumber()}</div>`;
+          count += intervalTime;
+          if (count >= duration) {
+            clearInterval(interval);
+            randomNumberText.innerHTML = `<div class="text-6xl">${getRandomNumber()}</div>`;
+          }
+        }, intervalTime);
+      });
+
+      document.getElementById('clearButton').addEventListener('click', function () {
+        document.getElementById('randomNumberText').innerHTML = 'Klik untuk mengacak <br />angka';
+      });
+    </script>
+  </body>
+</html>
